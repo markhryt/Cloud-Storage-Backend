@@ -25,6 +25,11 @@ public class UsersService {
         return usersRepo.findAll();
     }
 
+
+    public Users getUserByEmail(String email) {
+        return usersRepo.findByEmail(email).orElse(null);
+    }
+
     public void createUser(User userData) {
         if (userData == null || userData.getEmail() == null || userData.getPassword() == null) {
             throw new IllegalArgumentException("User and its email/password must not be null");
