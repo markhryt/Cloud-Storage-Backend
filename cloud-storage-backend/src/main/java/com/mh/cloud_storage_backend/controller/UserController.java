@@ -22,26 +22,4 @@ public class UserController {
         return usersService.getAllUsers();
     }
 
-
-    @RestController
-    @RequestMapping("/api/auth")
-    public static class AuthController {
-
-        @Autowired
-        private AuthenticationManager authenticationManager;
-
-        @Autowired
-        private UsersService usersService;
-
-        @PostMapping("/register")
-        public ResponseEntity<String> registerUser(@RequestBody User usersData) {
-            try {
-                System.out.println(usersData);
-                usersService.createUser(usersData);
-                return ResponseEntity.ok("User registered successfully");
-            } catch (Exception e) {
-                return ResponseEntity.badRequest().body("Error registering user: " + e.getMessage());
-            }
-        }
-    }
 }
