@@ -10,7 +10,7 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "fileupload/storage/users";
+    private String location = "fileupload/storage/users/";
 
 
     public String getLocation() {
