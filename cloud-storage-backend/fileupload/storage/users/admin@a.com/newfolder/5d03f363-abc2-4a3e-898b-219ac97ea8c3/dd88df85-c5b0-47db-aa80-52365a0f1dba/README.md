@@ -17,10 +17,10 @@ This project is an implementation of a simplified cloud-based file storage syste
 
 ## 🛠️ Tech Stack
 
-- **Java 17**
+- **Java 24**
 - **Spring Boot** (REST APIs, validation, security)
 - **JUnit & Mockito** for testing
-- **H2 / PostgreSQL** (for metadata storage)
+- **MySQL** (for metadata storage)
 - **Local File System or In-Memory Mock Nodes** (for simulating storage)
 - **JWT** for authentication
 
@@ -46,8 +46,6 @@ This project was built to deepen understanding of:
 | GET    | `/files/{id}/download`    | Download file by ID      |
 | GET    | `/files/metadata`         | Query metadata           |
 | POST   | `/files/share`            | Generate shareable link  |
-
-_You can expand this section with request/response examples or link to Swagger docs if available._
 
 ---
 

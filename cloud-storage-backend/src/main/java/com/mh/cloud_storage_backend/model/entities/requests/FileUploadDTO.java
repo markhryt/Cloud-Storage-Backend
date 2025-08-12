@@ -17,4 +17,6 @@ public class FileUploadDTO {
 
     private LocalDateTime createdAt;
 
+    private String localDirectory;
+
 }

@@ -50,7 +50,6 @@ public class FileUploadController {
 
         if (fileChunkService.uploadFileChunk(file, fileChunkDTO)){
             return ResponseEntity.ok("File entity uploaded successfully: ");
-
         }
 
         return ResponseEntity.ok("File entity upload failed: " + "Please check the file metadata and try again.");

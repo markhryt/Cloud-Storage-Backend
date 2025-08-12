@@ -34,13 +34,33 @@ public class FileSystemStorageService implements StorageService {
         this.rootLocation = Paths.get(properties.getLocation());
     }
 
-    public void store(MultipartFile file) {
+    public void store(MultipartFile file, String username, String localDirectory, String fileId, String chunkId) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         String uniqueName = filename;
-        Path destination = rootLocation.resolve(uniqueName);
+
+        // Create nested directories: rootLocation/username/localDirectory/fileId/chunkId
+        Path userDirectory = rootLocation.resolve(username);
+        Path localDirPath = userDirectory.resolve(localDirectory);
+        Path fileIdDirectory = localDirPath.resolve(fileId);
+        Path chunkDirectory = fileIdDirectory.resolve(chunkId);
+
+        try {
+            Files.createDirectories(chunkDirectory);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to create directory structure for user: " + username +
+                                      ", local directory: " + localDirectory +
+                                      ", file ID: " + fileId +
+                                      ", chunk ID: " + chunkId, e);
+        }
+
+        // Store file in the chunk directory
+        Path destination = chunkDirectory.resolve(uniqueName);
+
+        // Safety check for directory traversal
         if (!destination.normalize().startsWith(rootLocation)) {
             throw new RuntimeException("Cannot store file outside upload dir");
         }
+
         try (InputStream in = file.getInputStream()) {
             Files.copy(in, destination, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {

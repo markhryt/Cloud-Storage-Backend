@@ -53,6 +53,9 @@ public class Files {
     )
     private List<FileChunks> chunks;
 
+    @Column(name = "local_directory", length = 255, columnDefinition = "varchar(255) default ''")
+    private String localDirectory;
+
     @PrePersist
     private void prePersist() {
         if (this.id == null) {
@@ -68,6 +71,7 @@ public class Files {
         this.numberOfChunks = fileUploadDTO.getNumberOfChunks();
         this.tags = fileUploadDTO.getTags();
         this.createdAt = fileUploadDTO.getCreatedAt();
+        this.localDirectory = fileUploadDTO.getLocalDirectory();
     }
 
 }

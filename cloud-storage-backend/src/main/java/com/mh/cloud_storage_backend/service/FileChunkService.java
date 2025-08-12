@@ -33,8 +33,7 @@ public class FileChunkService {
         FileChunks fileChunks = new FileChunks(fileChunkDTO, ownerFile);
         fileChunkRepository.save(fileChunks);
 
-        systemStorageService.store(fileChunk);
-
+        systemStorageService.store(fileChunk, ownerFile.getOwner().getEmail(), ownerFile.getLocalDirectory(), ownerFile.getId(), fileChunks.getId());
         return true;
     }
 
