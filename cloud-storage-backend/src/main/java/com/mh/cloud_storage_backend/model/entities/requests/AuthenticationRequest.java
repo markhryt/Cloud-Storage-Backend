@@ -7,4 +7,9 @@ import lombok.Data;
 public class AuthenticationRequest {
     private String username;
     private String password;
+
+    @Data
+    public static class FolderCreateRequest {
+        public String folderName;
+    }
 }

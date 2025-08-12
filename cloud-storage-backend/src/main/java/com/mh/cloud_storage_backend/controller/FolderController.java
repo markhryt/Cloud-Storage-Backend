@@ -1,6 +1,6 @@
 package com.mh.cloud_storage_backend.controller;
 
-import com.mh.cloud_storage_backend.model.entities.dto.FolderCreateRequest;
+import com.mh.cloud_storage_backend.model.entities.requests.AuthenticationRequest;
 import com.mh.cloud_storage_backend.model.util.JWTUtil;
 import com.mh.cloud_storage_backend.service.FolderService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ public class FolderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createFolder(@RequestBody FolderCreateRequest folderName, HttpServletRequest request) {
+    public ResponseEntity<String> createFolder(@RequestBody AuthenticationRequest.FolderCreateRequest folderName, HttpServletRequest request) {
         // Logic to create a folder with the given name
         if (folderName == null) {
             return ResponseEntity.badRequest().body("Folder name cannot be empty");
