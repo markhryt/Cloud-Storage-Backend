@@ -1,11 +1,10 @@
 package com.mh.cloud_storage_backend.controller;
 
-import com.mh.cloud_storage_backend.model.entities.dto.FileChunkDTO;
+import com.mh.cloud_storage_backend.model.entities.requests.FileChunkDTO;
 import com.mh.cloud_storage_backend.model.entities.requests.FileUploadDTO;
 import com.mh.cloud_storage_backend.service.FileChunkService;
 import com.mh.cloud_storage_backend.service.FileService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

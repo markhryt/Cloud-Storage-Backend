@@ -14,17 +14,19 @@ public class FolderService {
         this.usersRepo = usersRepo;
     }
     public boolean createFolder(String folderPath, String userEmail) {
-        try{
+        try {
             Users user = usersRepo.findByEmail(userEmail)
                     .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + userEmail));
             File dir = resolveUserPath(user.getId(), folderPath);
-            System.out.println(dir.getAbsolutePath());
-            return dir.mkdir();
-        }catch(Exception e){
+            System.out.println("Creating directory: " + dir.getAbsolutePath());
+            
+            return dir.mkdirs();
+        } catch (Exception e) {
+            System.err.println("Error creating folder: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
-
     public static File resolveUserPath(String username, String userInputPath) throws IOException {
         File baseDir = new File("fileupload/storage/users/" + username);
         File targetFile = new File(baseDir, userInputPath);
@@ -33,8 +35,8 @@ public class FolderService {
         String basePath = baseDir.getCanonicalPath();
         String targetPath = targetFile.getCanonicalPath();
 
-        // Security check: ensure target is within baseDir
-        if (!targetPath.startsWith(basePath + File.separator)) {
+        // Security check: ensure target is either the baseDir itself or within baseDir
+        if (!targetPath.equals(basePath) && !targetPath.startsWith(basePath + File.separator)) {
             throw new SecurityException("Invalid path: potential path traversal attempt.");
         }
 

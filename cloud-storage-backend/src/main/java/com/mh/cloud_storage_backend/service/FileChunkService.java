@@ -2,13 +2,11 @@ package com.mh.cloud_storage_backend.service;
 
 import com.mh.cloud_storage_backend.model.entities.FileChunks;
 import com.mh.cloud_storage_backend.model.entities.Files;
-import com.mh.cloud_storage_backend.model.entities.dto.FileChunkDTO;
+import com.mh.cloud_storage_backend.model.entities.requests.FileChunkDTO;
 import com.mh.cloud_storage_backend.model.repository.FileChunkRepository;
 import com.mh.cloud_storage_backend.model.repository.FilesRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Optional;
 
 @Service
 public class FileChunkService {

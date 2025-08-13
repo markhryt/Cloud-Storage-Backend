@@ -1,12 +1,11 @@
 package com.mh.cloud_storage_backend.model.entities;
 
-import com.mh.cloud_storage_backend.model.entities.dto.FileChunkDTO;
+import com.mh.cloud_storage_backend.model.entities.requests.FileChunkDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 

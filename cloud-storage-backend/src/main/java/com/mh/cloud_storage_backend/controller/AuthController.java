@@ -1,8 +1,9 @@
 package com.mh.cloud_storage_backend.controller;
 
-import com.mh.cloud_storage_backend.model.entities.dto.User;
+import com.mh.cloud_storage_backend.model.entities.requests.User;
 import com.mh.cloud_storage_backend.model.entities.requests.AuthenticationRequest;
 import com.mh.cloud_storage_backend.model.util.JWTUtil;
+import com.mh.cloud_storage_backend.service.FolderService;
 import com.mh.cloud_storage_backend.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,14 @@ public class AuthController {
     @Autowired
     private JWTUtil jwtUtil;
 
+    @Autowired
+    private FolderService folderService;
+
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User usersData) {
         try {
             usersService.createUser(usersData);
+            folderService.createFolder("", usersData.getEmail());
             return ResponseEntity.ok("User registered successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error registering user: " + e.getMessage());

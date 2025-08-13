@@ -1,7 +1,7 @@
 package com.mh.cloud_storage_backend.service;
 
 import com.mh.cloud_storage_backend.model.entities.Users;
-import com.mh.cloud_storage_backend.model.entities.dto.User;
+import com.mh.cloud_storage_backend.model.entities.requests.User;
 import com.mh.cloud_storage_backend.model.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
