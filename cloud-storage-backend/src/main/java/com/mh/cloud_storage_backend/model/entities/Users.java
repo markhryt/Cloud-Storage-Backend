@@ -31,6 +31,9 @@ public class Users implements UserDetails {
     @Column(name = "password_hash", nullable = false, length = 255)
     private String password;
 
+    @Column
+    private String role;
+
     @Column(name = "tier", nullable = false, length = 1, columnDefinition = "char(1) default 'f'")
     private String tier;
 
